@@ -57,3 +57,9 @@
  550  ssh-keygen -t rsa
 ##to check the public key cat and give the path
   551  cat /c/Users/gopal/.ssh/id_rsa.pub
+#lets push an new change
+ 560  echo "we are ending the calcy project" >> calcy.py
+  561  git status
+  562  git add calcy.py
+  563  git commit -m "ended calcy program"
+  564  git push origin main
