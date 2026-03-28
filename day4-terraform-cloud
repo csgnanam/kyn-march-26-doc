@@ -1,0 +1,17 @@
+#first we will destroy it 
+  terraform destroy
+  ##after that we will create a file .gitignore and put the content inside it 
+.terraform
+.tfstate
+.tfstate.backup
+.terraform.lock.hcl
+  #then in the terminal 
+  git init
+  git add .
+  git commit -m "terraform project"
+  #######then we will create a new repo give the repo name like this kyn-terraform-cloud-march26
+  ####once the repo created copy the command from the github 
+git branch -M main
+git remote add origin git@github.com:gopal1409/kyn-terraform-cloud-march26.git
+git push -u origin main
+  
