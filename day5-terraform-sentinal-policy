@@ -1,0 +1,36 @@
+###to create sentinal policy and apply to your project
+  1. you need to create a policy
+  2. apply the same in policy set
+  #####we will create the policy from terraform cloud
+  manage - organziation-in manage we will select setting-integration-policy-
+  #we will click on policy and create a new policy
+  #inside the policy code paste from line 8 till 23
+import "tfplan/v2" as tfplan
+
+allowed = ["t2.micro", "t2.small"]
+
+targets = filter tfplan.resource_changes as _, r {
+  (r.type is "aws_instance" or r.type is "aws_launch_template") and
+  ("create" in r.change.actions or "update" in r.change.actions)
+}
+
+violations = filter targets as _, r {
+  not (r.change.after.instance_type in allowed)
+}
+
+main = rule {
+  length(violations) is 0
+}
+
+#we have created a global policy now we will go to policy set 
+  #click on policy set connect a new policy
+  #select individual managed policy
+  next give a name restrict-policy
+  ##scope of the policy
+  @policy enforced in selected workspace or project select project it will come in the drop down
+  ##select your workspace
+  #then next policy drop down select your policy and click on connect policy set
+  #then go to c1.ec2.template.tf
+  ##change the isntance type to prod
+  #after this 
+  git add commit and push it 
