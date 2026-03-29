@@ -1,0 +1,13 @@
+##inside your workspace we will enable remote execution
+  ##on your extreme left Auto-apply API, UI, & VCS runs: Off
+    #3enable both the option and save it 
+    ##we will go to ec2-template.tf file
+    ##in that we will change the envrionment from test ---dev
+    #previosly instance type showing test make it dev 
+    instance_type = var.instance_type["dev"]
+    #once you modify it 
+    git status 
+    ###################
+    git add .
+    git commit -m "change the environment to dev t2 micro instance"
+    git push origin main
